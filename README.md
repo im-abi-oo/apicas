@@ -1,8 +1,8 @@
 # 🎉 Sina API Free | مجموعه وب‌سرویس‌های رایگان، سریع و بدون نیاز به توکن
 
 <div align="center"><img src="https://img.icons8.com/external-wanicon-lineal-wanicon/200/external-api-big-data-wanicon-lineal-wanicon.png" width="160"/>
-    🚀 Sina API Free
 
+**🚀 Sina API Free**
 **مجموعه وب‌سرویس‌های رایگان، بدون توکن، سریع و قابل استفاده برای همه**
 
 
@@ -170,7 +170,9 @@ Sina API Free یک پلتفرم کاملاً رایگان، بدون توکن و
 
 # 🌐 ارتباط با من
 
-<div align="center"><img src="https://img.icons8.com/color/96/communication.png" width="80"/>📧 ایمیل: xxxxsinaxxxx.ir@gmail.com
+<div align="center"><img src="https://img.icons8.com/color/96/communication.png" width="80"/>
+    
+📧 ایمیل: xxxxsinaxxxx.ir@gmail.com
 📢 کانال: Sinabani_api
 💬 آی‌دی: Sinabanis
 🐙 گیت‌هاب: Sinabanihashem
