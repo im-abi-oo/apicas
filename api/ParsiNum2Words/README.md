@@ -44,13 +44,18 @@ POST https://number.api-sina-free.workers.dev/convert
 
 ---
 
-# 📦 خروجی وب‌سرویس
+## 📦 خروجی وب‌سرویس
 
-کلید	نوع	توضیح
+خروجی این API در هر دو روش **GET** و **POST** به‌صورت **JSON استاندارد** برگردانده می‌شود.
 
-input	string	عدد ورودی
-output	string	عدد تبدیل‌شده به حروف فارسی
+### 🔹 خروجی درخواست GET
 
+در هنگام ارسال درخواست GET، پاسخ وب‌سرویس شامل ساختار زیر است:
+
+| کلید | نوع | توضیح |
+|-----|-----|-------|
+| `input` | `string` | عددی که به API ارسال شده است |
+| `output` | `string` | عدد تبدیل‌شده به حروف فارسی |
 
 
 ---
@@ -198,13 +203,16 @@ POST https://number.api-sina-free.workers.dev/convert
 
 ---
 
-# 📦 API Response Structure
+## 📦 API Response Structure
 
-Key	Type	Description
+### Output for GET request
 
-input	string	Input number
-output	string	Number converted to Persian words
+When you make a GET request to the service, the response will contain the following structure:
 
+| Key    | Type   | Description                                           |
+|--------|--------|-------------------------------------------------------|
+| `input`  | `string` | The input number that was provided                    |
+| `output` | `string` | The input number converted into Persian words         |
 
 
 ---
