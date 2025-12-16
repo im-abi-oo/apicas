@@ -222,7 +222,7 @@ GET https://gpt4.api-sina-free.workers.dev/gpt4?text=Hello
 # ⚙️ Features
 
 ✅ GPT-4 powered intelligent responses                  
-✅ Full support for Persian (Farsi) language                            
+✅ Full support for all languages                            
 ✅ Suitable for bots and applications                   
 ✅ No API Key required                
 ✅ Fully RESTful                     
