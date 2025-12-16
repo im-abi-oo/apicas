@@ -54,12 +54,12 @@ GET https://gpt4.api-sina-free.workers.dev/gpt4?text=سلام%20عزیزم
 
 # ⚙️ ویژگی‌ها
 
-✅ پاسخ‌دهی هوشمند مبتنی بر GPT-4
-✅ پشتیبانی کامل از زبان فارسی
-✅ مناسب برای ربات‌ها و اپلیکیشن‌ها
-✅ بدون نیاز به API Key
-✅ کاملاً RESTful
-✅ پاسخ سریع و سبک
+✅ پاسخ‌دهی هوشمند مبتنی بر GPT-4           
+✅ پشتیبانی کامل از زبان فارسی                
+✅ مناسب برای ربات‌ها و اپلیکیشن‌ها             
+✅ بدون نیاز به API Key                   
+✅ کاملاً RESTful                        
+✅ پاسخ سریع و سبک                      
 
 
 ---
@@ -221,12 +221,12 @@ GET https://gpt4.api-sina-free.workers.dev/gpt4?text=Hello
 
 # ⚙️ Features
 
-✅ GPT-4 powered intelligent responses
-✅ Full support for Persian (Farsi) language
-✅ Suitable for bots and applications
-✅ No API Key required
-✅ Fully RESTful
-✅ Lightweight and fast
+✅ GPT-4 powered intelligent responses                  
+✅ Full support for Persian (Farsi) language                            
+✅ Suitable for bots and applications                   
+✅ No API Key required                
+✅ Fully RESTful                     
+✅ Lightweight and fast              
 
 
 ---
