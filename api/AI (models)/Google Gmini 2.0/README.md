@@ -1,4 +1,5 @@
-# 💎 Sina-Gemini API version : 1.0.0
+# 💎 Sina-Gemini API
+### version : 1.0.0
 
 وب‌سرویس **Sina-Gemini** یک سرویس چت هوشمند مبتنی بر مدل قدرتمند  
 **Google Gemini 2.0 Flash (Experimental)** است 🤖⚡  
@@ -268,26 +269,6 @@ print("👤 Creator:", data["creator"])
 print("📡 Channel:", data["channel"])
 print("🤖 Gemini Answer:", data["answer"])
 ```
-
----
-
-# 🤖 Example Usage in Chat Bots
-
-This API is suitable for integration with messaging platforms
-such as Telegram, Rubika, or any custom chatbot backend.
-
-Flow:
-
-1. Receive user message
-
-
-2. Send text to Sina-Gemini API
-
-
-3. Return answer to the user
-
-
-
 
 ---
 
