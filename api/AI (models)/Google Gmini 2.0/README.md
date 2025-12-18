@@ -35,7 +35,7 @@ https://gemini.api-sina-free.workers.dev/
 ## 🧪 نمونه درخواست
 
 ```http
-GET https://gemini.api-sina-free.workers.dev/?text=سلام%20هوش%20مصنوعی
+GET https://gemini.api-sina-free.workers.dev/?text=سلام%20عزیز
 ```
 
 ---
