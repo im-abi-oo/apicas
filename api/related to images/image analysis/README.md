@@ -64,7 +64,7 @@ curl -X POST -F "image=@test.png" https://image-analysis.api-sina-free.workers.d
 GET با لینک تصویر
 
 ```http
-https://image-analysis.api-sina-free.workers.dev/?url=https://example.com/test.png
+GET https://image-analysis.api-sina-free.workers.dev/?url=https://example.com/test.png
 ```
 
 ---
