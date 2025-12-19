@@ -181,10 +181,6 @@ https://photo-text.api-sina-free.workers.dev/{text}
 GET https://photo-text.api-sina-free.workers.dev/Hello
 ```
 
-### Persian Example
-```http
-GET https://photo-text.api-sina-free.workers.dev/سلام
-```
 ---
 
 ## 📦 API Output
