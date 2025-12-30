@@ -446,16 +446,15 @@ GET https://myket.api-sina-free.workers.dev/?text=Telegram&lang=fa&count=10&page
 
 ---
 
-⚠️ Error Handling
+## ⚠️ Error Handling
 
-Status	Message
+| Status | Message |
+|--------|---------|
+| 400    | text, lang, or count parameter missing or invalid |
+| 448    | Error fetching data from Myket |
+| 500    | Internal server error |
 
-400	text, lang, or count parameter missing or invalid
-448	Error fetching data from Myket
-500	Internal server error
-
-
-# 🧾 Example Error
+### 🧾 Example Error
 
 ```json
 {
