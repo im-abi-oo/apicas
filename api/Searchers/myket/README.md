@@ -309,3 +309,320 @@ bot.run()
 📍 Hosted on: Cloudflare Workers
 🗳 Rubika: https://rubika.ir/Sinabani_api
 🔗 API Endpoint: https://myket.api-sina-free.workers.dev/
+
+---
+---
+
+# 📱 Myket App Search API
+### Version: Myket API v1.0.0
+
+The **Myket App Search API** is a fast, lightweight, and API-key-free web service for  
+🔍 **searching apps on Myket**.
+
+This service receives an **app name** and other parameters, collects complete app information from the **Myket website**, and  
+returns a standard **JSON** output.
+
+🔹 Hosted on **Cloudflare Workers**  
+🔹 Suitable for bots, websites, and apps  
+🔹 Supports full app details, download links, and screenshots  
+
+---
+
+## 🧠 API Architecture
+
+1️⃣ User sends the app name and parameters  
+2️⃣ Worker fetches information from Myket search page  
+3️⃣ App details including name, package, icon, link, and description are collected  
+4️⃣ Standard JSON output is returned  
+
+---
+
+## 🌐 Main API URL
+
+https://myket.api-sina-free.workers.dev/
+
+---
+
+## 🔗 Endpoint
+
+### 🔹 Search Apps
+
+GET /
+
+#### Query Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|---------|------------|
+| `text`    | `string` | ✅ | App name or search keyword |
+| `lang`    | `string` | ✅ | Result language (`fa`, `en`, etc.) |
+| `count`   | `number` | ✅ | Number of results per page |
+| `page`    | `number` | ❌ | Page number (default 1) |
+| `sort`    | `string` | ❌ | Sort type (`newest`, `popular`) |
+| `format`  | `string` | ❌ | Output format (`lite` or `full`) |
+
+---
+
+## 📦 API Response Structure
+
+### Lite Mode
+
+```json
+{
+  "ok": true,
+  "channel": "@Sinabani_api",
+  "writer": "@Sinabanis",
+  "count": 10,
+  "data": [
+    {
+      "name": "Example App",
+      "package": "com.example.app",
+      "icon": "https://static.myket.ir/icon.png",
+      "link": "https://myket.ir/app/com.example.app",
+      "download": "https://myket.ir/dl?packageName=com.example.app"
+    }
+  ]
+}
+```
+
+### Full Mode
+
+```json
+{
+  "ok": true,
+  "channel": "@Sinabani_api",
+  "writer": "@Sinabanis",
+  "count": 10,
+  "data": [
+    {
+      "name": "Example App",
+      "package": "com.example.app",
+      "icon": "https://static.myket.ir/icon.png",
+      "link": "https://myket.ir/app/com.example.app",
+      "download": "https://myket.ir/dl?packageName=com.example.app",
+      "description": "Full app description",
+      "screenshots": [
+        "https://static.myket.ir/screenshot1.png",
+        "https://static.myket.ir/screenshot2.png"
+      ]
+    }
+  ]
+}
+```
+
+---
+
+# 🧪 Example Request
+
+```http
+GET https://myket.api-sina-free.workers.dev/?text=Telegram&lang=fa&count=10&page=1&sort=popular&format=full
+```
+
+---
+
+# 🧾 Example Response
+
+```json
+{
+  "ok": true,
+  "channel": "@Sinabani_api",
+  "writer": "@Sinabanis",
+  "count": 10,
+  "data": [
+    {
+      "name": "Telegram",
+      "package": "org.telegram.messenger",
+      "icon": "https://static.myket.ir/icon.png",
+      "link": "https://myket.ir/app/org.telegram.messenger",
+      "download": "https://myket.ir/dl?packageName=org.telegram.messenger",
+      "description": "Telegram messenger with full features...",
+      "screenshots": [
+        "https://static.myket.ir/screenshot1.png",
+        "https://static.myket.ir/screenshot2.png"
+      ]
+    }
+  ]
+}
+```
+
+---
+
+⚠️ Error Handling
+
+Status	Message
+
+400	text, lang, or count parameter missing or invalid
+448	Error fetching data from Myket
+500	Internal server error
+
+
+# 🧾 Example Error
+
+```json
+{
+  "ok": false,
+  "channel": "@Sinabani_api",
+  "writer": "@Sinabanis",
+  "data": "`text` parameter is required."
+}
+```
+
+---
+
+# 💻 Python Example
+
+```py
+import requests
+
+API = "https://myket.api-sina-free.workers.dev/"
+
+def search_app(text, lang="fa", count=10, page=1, sort="", format="full"):
+    params = {
+        "text": text,
+        "lang": lang,
+        "count": count,
+        "page": page,
+        "sort": sort,
+        "format": format
+    }
+    res = requests.get(API, params=params, timeout=10)
+    data = res.json()
+    return data
+
+apps = search_app("Telegram")
+print(apps)
+```
+
+---
+
+# 💻 Node.js Example
+
+```js
+const API = "https://myket.api-sina-free.workers.dev/";
+
+async function searchApp(text) {
+  const params = new URLSearchParams({
+    text,
+    lang: "fa",
+    count: 10,
+    page: 1,
+    sort: "popular",
+    format: "full"
+  });
+  const res = await fetch(`${API}?${params}`);
+  const data = await res.json();
+  console.log(data);
+}
+
+searchApp("Telegram");
+```
+
+---
+
+# 🤖 Rubika Bot Example
+
+```py
+from rubpy import Client, filters
+import requests
+
+bot = Client(name="myket_bot")
+API = "https://myket.api-sina-free.workers.dev/"
+
+@bot.on_message_updates(filters.text)
+async def handler(message):
+    text = message.text.strip()
+    if not text.lower().startswith("myket"):
+        return
+
+    query = text[6:].strip()
+    if not query:
+        return await message.reply("❗ Please enter the app name.")
+
+    try:
+        res = requests.get(API, params={
+            "text": query,
+            "lang": "fa",
+            "count": 1,
+            "format": "full"
+        }, timeout=10)
+        data = res.json()
+    except Exception as e:
+        return await message.reply(f"❌ Server error:\n{e}")
+
+    if not data.get("ok"):
+        return await message.reply(f"❌ Error: {data.get('data')}")
+
+    apps = data.get("data", [])
+    if not apps:
+        return await message.reply("❌ No app found.")
+
+    app = apps[0]
+
+    name = app.get("name", "-")
+    description = app.get("description", "-")
+    screenshots_count = len(app.get("screenshots", []))
+    download = app.get("download", "-")
+    icon = app.get("icon", "")
+
+    text_reply = (
+        f"📝 **{name}**\n\n"
+        f"📂 Description:\n{description}\n\n"
+        f"🖼 Screenshots count: {screenshots_count}\n"
+        f"⬇️ [Download]({download})"
+    )
+
+    if icon:
+        await message.reply_photo(photo=icon, caption=text_reply, parse_mode="markdown")
+    else:
+        await message.reply(text_reply, parse_mode="markdown")
+
+bot.run()
+```
+
+---
+
+# ⚙️ Features
+
+✅ No API Key required
+
+✅ Fast and lightweight search
+
+✅ Supports app names and keywords
+
+✅ Sort results (sort)
+
+✅ Full and lite response modes 
+(format)
+
+✅ Collects real app details (description, screenshots)
+
+✅ Production-ready, RESTful
+
+✅ Hosted on Cloudflare Workers
+
+
+---
+
+# 🎯 Use Cases
+
+● App search bots
+
+● App review websites
+
+● App management dashboards
+
+● Mobile applications
+
+● Myket monitoring tools
+
+● Student and professional projects
+
+
+---
+
+# 👤 Developer
+
+### Mir Sina Banihashem
+
+📍 Hosted on: Cloudflare Workers
+🗳 Rubika: https://rubika.ir/Sinabani_api
+🔗 API Endpoint: https://myket.api-sina-free.workers.dev/
