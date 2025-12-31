@@ -7,8 +7,6 @@
 - Perfect for web apps, bots, and projects  
 - Full documentation with ready-to-use examples for every API
 
----
-
 # 🎉 Sina API Free
 **مجموعه وب‌سرویس‌های رایگان، سریع و بدون نیاز به توکن**
 
