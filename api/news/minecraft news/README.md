@@ -274,3 +274,277 @@ bot.run()
 ---
 
 ---
+
+# 🎮 Minecraft News API
+### Version: Minecraft API v1.0.0
+
+The **Minecraft News API** is a fast, lightweight, and API-key-free web service for  
+📰 **fetching the latest Minecraft news**.
+
+This service collects the most recent Minecraft-related news from CafeBazaar Magazine and  
+returns a clean, structured **JSON** response.
+
+🔹 Hosted on **Leapcell.io**  
+🔹 Suitable for bots, websites, and mobile apps  
+🔹 Provides news title, summary, image, date, and link  
+
+---
+
+## 🧠 API Architecture
+
+1️⃣ Client sends a request to the API endpoint  
+2️⃣ Service fetches Minecraft news data from the source  
+3️⃣ News items are parsed and normalized  
+4️⃣ Standard JSON response is returned  
+
+---
+
+## 🌐 Main API URL
+
+https://minecraft-api-sina-free.leapcell.app
+
+---
+
+## 🔗 Endpoints
+
+### 🔹 Get Latest Minecraft News
+
+```http
+GET /minecraft-news?page=1
+```
+> The page parameter is optional (default: 1).
+
+---
+
+### 🔹 Parse Raw HTML
+
+```http
+POST /minecraft-news/parse
+Content-Type: text/plain
+```
+
+> The request body must contain raw HTML of the Minecraft news category page.
+
+---
+
+# 📦 API Response Structure
+
+```json
+{
+  "channel": "@Sinabani_api",
+  "writer": "@Sinabanis",
+  "page": 1,
+  "count": 8,
+  "items": [
+    {
+      "image_url": "https://mag.cafebazaar.ir/wp-content/uploads/2026/01/Screenshot-1404-10-18-at-10.24.57.jpg.webp",
+      "title": "News title",
+      "summary": "Short news summary",
+      "date": "1404/10/18",
+      "link": "https://mag.cafebazaar.ir/new-minecraft-snapshot-adds-updated-models-for-baby-mobs/",
+      "topic": "Latest Minecraft News"
+    }
+  ]
+}
+```
+
+---
+
+# 🧾 Response Fields Description
+
+| Field       | Type     | Description |
+|-------------|----------|-------------|
+| `channel`   | `string` | API publisher channel |
+| `writer`    | `string` | API developer |
+| `page`      | `integer`| Page number retrieved |
+| `count`     | `integer`| Number of news items extracted |
+| `items`     | `array`  | List of Minecraft news items |
+| `image_url` | `string` | News image URL |
+| `title`     | `string` | News title |
+| `summary`   | `string` | News summary |
+| `date`      | `string` | News publication date |
+| `link`      | `string` | Direct link to the news |
+| `topic`     | `string` | News category or topic |
+
+---
+
+# 🧪 Example Request
+
+```http
+GET https://minecraft-api-sina-free.leapcell.app/minecraft-news?page=1
+```
+
+---
+
+# 🧾 Example Response
+
+```json
+{
+  "channel": "@Sinabani_api",
+  "writer": "@Sinabanis",
+  "page": 1,
+  "count": 1,
+  "items": [
+    {
+      "image_url": "https://mag.cafebazaar.ir/wp-content/uploads/2026/01/Screenshot-1404-10-18-at-10.24.57.jpg.webp",
+      "title": "New Minecraft snapshot updates baby mob models",
+      "summary": "Minecraft’s latest snapshot introduces updated models for baby mobs...",
+      "date": "1404/10/18",
+      "link": "https://mag.cafebazaar.ir/new-minecraft-snapshot-adds-updated-models-for-baby-mobs/",
+      "topic": "Latest Minecraft News"
+    }
+  ]
+}
+```
+
+---
+
+# ⚠️ Error Handling
+
+| Status | Message |
+|--------|---------|
+| 448    | Error fetching Minecraft news from source |
+| 500    | Internal server error |
+
+### 🧾 Example Error
+
+```json
+{
+  "ok": false,
+  "channel": "@Sinabani_api",
+  "writer": "@Sinabanis",
+  "data": "Error fetching Minecraft news."
+}
+```
+
+---
+
+# 💻 Python Example
+
+```py
+import requests
+
+API = "https://minecraft-news-sinabanihashem4650-mn3t8pgp.leapcell.dev/minecraft-news"
+
+def getminecraftnews(page=1):
+    try:
+        res = requests.get(API, params={"page": page}, timeout=10)
+        return res.json()
+    except Exception as e:
+        return {
+            "ok": False,
+            "error": str(e)
+        }
+
+newsdata = getminecraft_news()
+
+for news in news_data.get("items", []):
+    print(news["title"], news["link"])
+```
+
+---
+
+# 💻 Node.js Example
+
+```js
+const API = "https://minecraft-news-sinabanihashem4650-mn3t8pgp.leapcell.dev/minecraft-news";
+
+async function getMinecraftNews() {
+  try {
+    const res = await fetch(API + "?page=1");
+    const data = await res.json();
+    console.log(data.items);
+  } catch (err) {
+    console.error("Error fetching news:", err);
+  }
+}
+
+getMinecraftNews();
+```
+
+---
+
+# 🤖 Use in Bots (Rubika , py)
+
+```py
+import requests
+from rubpy import Client, filters
+
+API = "https://minecraft-news-sinabanihashem4650-mn3t8pgp.leapcell.dev/minecraft-news"
+
+bot = Client(name="minecraftnewsbot")
+
+@bot.onmessageupdates(filters.text)
+async def handler(message):
+    text = message.text.strip().lower()
+
+    if text not in ["minecraft news", "/minecraft", "minecraft"]:
+        return
+
+    try:
+        res = requests.get(API, timeout=10)
+        data = res.json()
+    except Exception as e:
+        return await message.reply(f"❌ Server connection error:\n{e}")
+
+    news_list = data.get("items", [])
+    if not news_list:
+        return await message.reply("❌ No news found.")
+
+    news = news_list[0]
+
+    title = news.get("title", "-")
+    summary = news.get("summary", "-")
+    image = news.get("image_url", "")
+
+    reply_text = (
+        f"🎮 {title}\n\n"
+        f"📰 {summary}"
+    )
+
+    if image:
+        await message.reply_photo(
+            photo=image,
+            caption=reply_text,
+            parse_mode="markdown"
+        )
+    else:
+        await message.reply(
+            reply_text,
+            parse_mode="markdown"
+        )
+
+bot.run()
+```
+
+---
+
+# ⚙️ Features
+
+✅ No API Key required  
+✅ Fast and lightweight  
+✅ Latest Minecraft news  
+✅ Clean and normalized JSON  
+✅ Ready for production use  
+✅ RESTful structure  
+✅ Hosted on Leapcell.io  
+
+---
+
+# 🎯 Use Cases
+
+● Minecraft news bots  
+● Gaming websites  
+● Mobile apps  
+● News dashboards  
+● Student and professional projects  
+
+---
+
+# 👤 Developer
+
+### Mir Sina Banihashem
+
+📍 Hosted on: Leapcell.io  
+🗳 Rubika: https://rubika.ir/Sinabaniapi  
+🔗 API Endpoint: https://minecraft-api-sina-free.leapcell.app
