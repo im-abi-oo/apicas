@@ -1,7 +1,7 @@
 import requests
 from rubpy import Client, filters
 
-API = "https://minecraft-news-sinabanihashem4650-mn3t8pgp.leapcell.dev/minecraft-news"
+API = "https://minecraft-api-sina-free.leapcell.app/minecraft-news"
 
 bot = Client(name="minecraftnewsbot")
 
